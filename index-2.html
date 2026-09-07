@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LPO VPN | اینترنت بدون مرز</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FFFFFF;
+    --bg-alt: #FAFAFA;
+    --ink: #121212;
+    --ink-soft: #52525B;
+    --line: #E7E7E7;
+    --red: #E11D2A;
+    --red-dark: #B8121D;
+    --red-tint: #FDECEC;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    font-family:'Vazirmatn', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height:1.6;
+  }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width: 480px; margin:0 auto; padding: 0 20px; }
+
+  /* ===== هدر ===== */
+  header{
+    position: sticky; top:0; z-index:20;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 14px 20px;
+    max-width: 480px; margin:0 auto;
+  }
+  .brand{ display:flex; align-items:center; gap:9px; }
+  .brand-mark{
+    width:34px; height:34px; border-radius:9px;
+    background: var(--ink); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:14px;
+  }
+  .brand-name{ font-weight:800; font-size:16.5px; letter-spacing:-0.2px; }
+
+  .tg-btn{
+    display:flex; align-items:center; gap:6px;
+    background: var(--ink); color:#fff;
+    padding:8px 14px; border-radius: 20px;
+    font-size:12.5px; font-weight:600;
+  }
+  .tg-btn svg{ width:15px; height:15px; flex-shrink:0; }
+
+  /* ===== هیرو ===== */
+  .hero{ padding: 44px 0 34px; text-align:center; }
+  .hero-eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:2px; text-transform:uppercase;
+    color: var(--red); font-weight:700; margin-bottom:16px;
+  }
+  .hero h1{
+    font-size: 33px; font-weight:900; line-height:1.35; letter-spacing:-0.5px;
+    margin-bottom:16px;
+  }
+  .hero h1 span{ color: var(--red); }
+  .hero p{
+    font-size:14.5px; color: var(--ink-soft); max-width:360px; margin:0 auto 28px;
+  }
+  .hero-ctas{ display:flex; flex-direction:column; gap:10px; align-items:center; }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 26px; border-radius:12px;
+    font-weight:700; font-size:14.5px; border:none; cursor:pointer;
+    width:100%; max-width:320px;
+  }
+  .btn-red{ background: var(--red); color:#fff; }
+  .btn-red:active{ background: var(--red-dark); }
+  .btn-outline{ background:#fff; color:var(--ink); border:1.5px solid var(--ink); }
+
+  /* ===== ویژگی‌ها ===== */
+  .features{
+    padding: 30px 0; background: var(--bg-alt);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .feature-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap:12px;
+  }
+  .feature-card{
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:16px 14px;
+  }
+  .feature-icon{ font-size:20px; margin-bottom:10px; }
+  .feature-title{ font-size:13.5px; font-weight:700; margin-bottom:4px; }
+  .feature-desc{ font-size:11.5px; color:var(--ink-soft); line-height:1.6; }
+
+  /* ===== سرورها ===== */
+  .servers{ padding: 34px 0; }
+  .section-eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:1.5px;
+    text-transform:uppercase; color:var(--red); font-weight:700; margin-bottom:8px;
+  }
+  .section-title{ font-size:21px; font-weight:800; margin-bottom:6px; }
+  .section-sub{ font-size:13px; color:var(--ink-soft); margin-bottom:20px; }
+
+  .server-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap:10px;
+  }
+  .server-chip{
+    display:flex; align-items:center; gap:9px;
+    border:1px solid var(--line); border-radius:11px;
+    padding:11px 13px; font-size:13px; font-weight:600;
+  }
+  .server-flag{ font-size:18px; }
+
+  /* ===== قیمت‌ها ===== */
+  .pricing{ padding: 34px 0 40px; background: var(--bg-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .plans{ display:flex; flex-direction:column; gap:14px; }
+  .plan{
+    display:block;
+    background:#fff; border:2px solid var(--line);
+    border-radius:16px; padding:18px 18px;
+    position:relative;
+  }
+  .plan.popular{ border-color: var(--red); }
+  .popular-tag{
+    position:absolute; top:-11px; right:16px;
+    background: var(--red); color:#fff;
+    font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:20px;
+  }
+  .plan-top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+  .plan-name{ font-size:15px; font-weight:800; }
+  .plan-unlimited{
+    font-size:10.5px; font-weight:700; color: var(--red);
+    background: var(--red-tint); padding:3px 9px; border-radius:16px;
+  }
+  .plan-price{ font-family:'JetBrains Mono',monospace; font-size:24px; font-weight:700; color: var(--red); }
+  .plan-price small{ font-size:12px; font-weight:500; color: var(--ink-soft); }
+
+  /* ===== نحوه اتصال / تلگرام ===== */
+  .connect{ padding: 36px 0; text-align:center; }
+  .connect-icon{
+    width:56px; height:56px; border-radius:16px; background:var(--ink);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 18px;
+  }
+  .connect-icon svg{ width:28px; height:28px; }
+  .connect h2{ font-size:19px; font-weight:800; margin-bottom:10px; }
+  .connect p{ font-size:13.5px; color:var(--ink-soft); max-width:340px; margin:0 auto 22px; }
+
+  .support-row{
+    display:flex; flex-direction:column; gap:10px; align-items:center; margin-top:8px;
+  }
+  .support-note{ font-size:12px; color:var(--ink-soft); margin-top:16px; }
+  .support-note b{ color:var(--ink); }
+
+  footer{
+    padding: 24px 0 34px; text-align:center;
+    border-top:1px solid var(--line);
+  }
+  .footer-links{ display:flex; justify-content:center; gap:18px; margin-bottom:14px; }
+  .footer-links a{ font-size:12.5px; color:var(--ink-soft); font-weight:600; }
+  .footer-copy{ font-size:11px; color:#9CA3AF; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">LP</div>
+      <div class="brand-name">LPO VPN</div>
+    </div>
+    <a class="tg-btn" href="https://t.me/LPOVPN" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 3.5 2.7 11c-1 .4-1 1.7.1 2l4.8 1.5 1.9 5.9c.2.7 1.1.9 1.6.3l2.6-2.9 5 3.7c.8.6 1.9.1 2.1-.9l3.3-15.6c.2-1-.7-1.9-1.7-1.5ZM8.6 13.4l9.3-6.2c.3-.2.6.2.3.4l-7.7 7.3c-.3.3-.5.7-.5 1.1l-.2 2.5c0 .2-.3.3-.4 0l-1.3-4.3c-.1-.4 0-.7.5-.8Z"/></svg>
+      کانال تلگرام
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">بدون فیلتر · بدون قطعی</div>
+    <h1>اینترنت <span>بدون مرز</span>، با سرعت پایدار</h1>
+    <p>بدون افت سرعت، بدون قطعی، با سرورهایی در ۱۱ کشور مختلف. همین امروز به LPO VPN وصل شو.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-red" href="#plans">مشاهده پلن‌ها و خرید اشتراک</a>
+      <a class="btn btn-outline" href="./panel.html">ورود / ثبت‌نام</a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="wrap">
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">سرعت پایدار</div>
+        <div class="feature-desc">بدون افت سرعت و بدون قطعی، حتی در ساعات پرترافیک</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <div class="feature-title">۱۱ کشور</div>
+        <div class="feature-desc">امکان انتخاب سرور از میان کشورهای مختلف اروپا و آمریکا</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <div class="feature-title">رمزنگاری کامل</div>
+        <div class="feature-desc">حریم خصوصی و امنیت ترافیک شما تضمین‌شده است</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <div class="feature-title">پشتیبانی مستقیم</div>
+        <div class="feature-desc">پاسخ‌گویی مستقیم در تلگرام برای رفع هر مشکل</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="servers">
+  <div class="wrap">
+    <div class="section-eyebrow">پوشش جهانی</div>
+    <div class="section-title">سرورها در ۱۱ کشور</div>
+    <div class="section-sub">هر زمان بخوای می‌تونی سرور مورد نظرت رو عوض کنی.</div>
+    <div class="server-grid">
+      <div class="server-chip"><span class="server-flag">🇩🇪</span> آلمان</div>
+      <div class="server-chip"><span class="server-flag">🇫🇷</span> فرانسه</div>
+      <div class="server-chip"><span class="server-flag">🇦🇹</span> اتریش</div>
+      <div class="server-chip"><span class="server-flag">🇦🇺</span> استرالیا</div>
+      <div class="server-chip"><span class="server-flag">🇳🇱</span> هلند</div>
+      <div class="server-chip"><span class="server-flag">🇧🇪</span> بلژیک</div>
+      <div class="server-chip"><span class="server-flag">🇮🇹</span> ایتالیا</div>
+      <div class="server-chip"><span class="server-flag">🇨🇿</span> جمهوری چک</div>
+      <div class="server-chip"><span class="server-flag">🇫🇮</span> فنلاند</div>
+      <div class="server-chip"><span class="server-flag">🇺🇸</span> آمریکا</div>
+      <div class="server-chip"><span class="server-flag">🇨🇭</span> سوئیس</div>
+    </div>
+  </div>
+</section>
+
+<section class="pricing" id="plans">
+  <div class="wrap">
+    <div class="section-eyebrow">قیمت‌ها</div>
+    <div class="section-title">یه پلن مناسب خودت انتخاب کن</div>
+    <div class="section-sub">همه پلن‌ها با حجم نامحدود.</div>
+
+    <div class="plans">
+      <a class="plan" href="https://t.me/Lpovpn_solo" target="_blank" rel="noopener">
+        <div class="plan-top">
+          <div class="plan-name">یک ماهه</div>
+          <div class="plan-unlimited">نامحدود</div>
+        </div>
+        <div class="plan-price">۳۰۰,۰۰۰<small> تومان</small></div>
+      </a>
+
+      <a class="plan popular" href="https://t.me/Lpovpn_solo" target="_blank" rel="noopener">
+        <div class="popular-tag">پرطرفدار</div>
+        <div class="plan-top">
+          <div class="plan-name">سه ماهه</div>
+          <div class="plan-unlimited">نامحدود</div>
+        </div>
+        <div class="plan-price">۷۰۰,۰۰۰<small> تومان</small></div>
+      </a>
+
+      <a class="plan" href="https://t.me/Lpovpn_solo" target="_blank" rel="noopener">
+        <div class="plan-top">
+          <div class="plan-name">شش ماهه</div>
+          <div class="plan-unlimited">نامحدود</div>
+        </div>
+        <div class="plan-price">۱,۲۰۰,۰۰۰<small> تومان</small></div>
+      </a>
+
+      <a class="plan" href="https://t.me/Lpovpn_solo" target="_blank" rel="noopener">
+        <div class="plan-top">
+          <div class="plan-name">یک ساله</div>
+          <div class="plan-unlimited">نامحدود</div>
+        </div>
+        <div class="plan-price">۲,۰۰۰,۰۰۰<small> تومان</small></div>
+      </a>
+    </div>
+
+    <a class="btn btn-red" href="https://t.me/Lpovpn_solo" target="_blank" rel="noopener" style="margin-top:20px;">سفارش و پرداخت از طریق تلگرام</a>
+  </div>
+</section>
+
+<section class="connect">
+  <div class="wrap">
+    <div class="connect-icon">
+      <svg viewBox="0 0 24 24" fill="#fff"><path d="M21.9 3.5 2.7 11c-1 .4-1 1.7.1 2l4.8 1.5 1.9 5.9c.2.7 1.1.9 1.6.3l2.6-2.9 5 3.7c.8.6 1.9.1 2.1-.9l3.3-15.6c.2-1-.7-1.9-1.7-1.5ZM8.6 13.4l9.3-6.2c.3-.2.6.2.3.4l-7.7 7.3c-.3.3-.5.7-.5 1.1l-.2 2.5c0 .2-.3.3-.4 0l-1.3-4.3c-.1-.4 0-.7.5-.8Z"/></svg>
+    </div>
+    <h2>بعد از خرید اشتراک چیکار کنم؟</h2>
+    <p>برای اتصال به سرورها، کافیه به کانال تلگرام ما مراجعه کنی — نحوه اتصال به‌صورت کامل و قدم‌به‌قدم اونجا توضیح داده شده.</p>
+    <div class="support-row">
+      <a class="btn btn-red" href="https://t.me/LPOVPN" target="_blank" rel="noopener">عضویت در کانال تلگرام</a>
+      <a class="btn btn-outline" href="https://t.me/Lpovpn_solo" target="_blank" rel="noopener">پشتیبانی مستقیم تلگرام</a>
+    </div>
+    <div class="support-note">برای رفع هرگونه مشکل، پیام بده به <b>@Lpovpn_solo</b></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://t.me/LPOVPN" target="_blank" rel="noopener">کانال تلگرام</a>
+      <a href="https://t.me/Lpovpn_solo" target="_blank" rel="noopener">پشتیبانی</a>
+      <a href="./panel.html">ورود به پنل</a>
+    </div>
+    <div class="footer-copy">LPO VPN — تمام حقوق محفوظ است</div>
+  </div>
+</footer>
+
+</body>
+</html>
